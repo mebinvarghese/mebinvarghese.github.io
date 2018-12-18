@@ -38,6 +38,27 @@
       <!-- Font -->
       <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
+      
+      <!-- jQuery Library -->
+      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+      <!-- Validation library -->
+      <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+      <!-- Materialize js -->
+      <script type="text/javascript" src="js/materialize.min.js"></script>
+      <!-- Skill Progress Bar -->
+      <script src="js/appear.min.js" type="text/javascript"></script>
+      <script src="js/pro-bars.min.js" type="text/javascript"></script>
+      <!-- Owl slider -->      
+      <script src="js/owl.carousel.min.js"></script>    
+      <!-- Mixit slider  -->
+      <script src="http://cdn.jsdelivr.net/jquery.mixitup/latest/jquery.mixitup.min.js"></script>
+      <!-- counter -->
+      <script src="js/waypoints.min.js"></script>
+      <script src="js/jquery.counterup.min.js"></script>     
+
+      <!-- Custom Js -->
+      <script src="js/custom.js"></script>      
+
       <script type="text/javascript">
        
         function download1(e) {
@@ -48,6 +69,61 @@
 
           return true;
         };
+
+
+        $(document).ready(function (e) {
+            $('.message-me').validate({
+              submitHandler: function (form) {
+                console.log('here');
+
+                   var contactName = $('#contactName').val();
+                    var contactEmail = $('#contactEmail').val();
+                    var contactSubject = $('#contactSubject').val();
+                    var contactNumber = $('#contactNumber').val();
+                    var contactMessage = $('#contactMessage').val();
+                    $.ajax('https://api.mailgun.net/v3/YOUR_SANDBOX.mailgun.org/messages',
+                            {
+                              headers: {"Authorization": "Basic "+btoa("api:key-d82c9ad51469727c248903f80fab6646-9b463597-ea59bd2d"),
+                                        "Accept" : "application/json",
+                                        "Origin": "http://mebinvarghese.in"
+                                      },
+                              type:"POST",
+                              username: 'api',
+                              password: 'key-d82c9ad51469727c248903f80fab6646-9b463597-ea59bd2d',
+                              crossDomain: true,
+                              data:{
+                                "html": '<h1>New Enquiry</h1><span>Name : '+contactName+'</span><br><span>Email : '+contactEmail+'</span><br><span>Number : '+contactNumber+'</span><br><span>Message : '+contactMessage+'</span><br>',
+                                "subject": contactSubject,
+                                "from": "Mailgun Sandbox <postmaster@sandbox6fc92a23b9f348e5b6f4cc60c4ed59d9.mailgun.org>",
+                                "to": "mebinvarghese007@gmail.com"
+                              },
+                              success:function(a,b,c){
+                                console.log( 'mail sent: ', b );
+                              }.bind(this),
+                              error:function( xhr, status, errText ){console.log( 'mail sent failed: ', xhr.responseText );}
+                            });
+
+              }
+            })
+          });
+        function sendMessage() {
+          $.ajax('https://api.mailgun.net/v3/YOUR_SANDBOX.mailgun.org/messages',
+                  {
+                    type:"POST",
+                    username: 'api',
+                    password: 'd82c9ad51469727c248903f80fab6646-9b463597-ea59bd2d',
+                    data:{
+                      "html": `<h1>New Enquiry</h1>`,
+                      "subject": 'New Enquiry about you',
+                      "from": "Mailgun Sandbox <postmaster@sandbox6fc92a23b9f348e5b6f4cc60c4ed59d9.mailgun.org>",
+                      "to": "mebinvarghese007@gmail.com"
+                    },
+                    success:function(a,b,c){
+                      console.log( 'mail sent: ', b );
+                    }.bind(this),
+                    error:function( xhr, status, errText ){console.log( 'mail sent failed: ', xhr.responseText );}
+                  });
+         }
     </script>
 
     </head>
@@ -235,7 +311,7 @@
                             <span class="card-title activator reveal-title">Ionic Developer
                               <!-- <i class="material-icons right">more_vert</i> -->
                             </span>
-                            <p><a>XTAPPS Pvt. Lmt.</a></p>
+                            <p><a href="http://xtapps.com/" target="_blank">XTAPPS Pvt. Lmt.</a></p>
                           </div>
                           <div class="card-reveal">
                             <span class="card-title reveal-title">Ionic Developer<i class="material-icons right">close</i></span>
@@ -496,7 +572,7 @@
                         <div class="col s12">
                           <div class="single-testimonial">
                             <div class="testimonial-img">
-                              <img src="img/profile-img1.jpg" alt="img">
+                              <img src="img/aarvin.jpeg" alt="img">
                             </div>
                             <div class="testimonial-content">
                               <h3>Aarvin M S</h3>
@@ -508,16 +584,16 @@
                         <div class="col s12">
                           <div class="single-testimonial">
                             <div class="testimonial-img">
-                              <img src="img/profile-img.jpg" alt="img">
+                              <img src="img/punyalan.jpg" alt="img">
                             </div>
                             <div class="testimonial-content">
-                              <h3>Mike Jones</h3>
-                              <span>CEO, Google Inc.</span>
+                              <h3>Francis Vimal</h3>
+                              <span>Owner, Chellanam Fish Farm</span>
                               <p>"The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here.It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout"</p>
                             </div>
                           </div>
                         </div>
-                        <div class="col s12">
+                        <!-- <div class="col s12">
                           <div class="single-testimonial">
                             <div class="testimonial-img">
                               <img src="img/profile-img1.jpg" alt="img">
@@ -528,7 +604,7 @@
                               <p>"The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here.It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout"</p>
                             </div>
                           </div>
-                        </div>                                       
+                        </div>                                        -->
                       </div>
                       <div class="customNavigation">
                         <a class="btn prev2 btn-floating waves-effect waves-light btn-large white"><i class="mdi-navigation-chevron-left brand-text"></i></a>
@@ -633,6 +709,21 @@
               </div> 
             </div>
           </section> -->
+
+          <!-- Social Media -->
+          <section id="socialmedia">
+            <div class="container-fluid socialmedia">
+              <div class="row">
+                <a href="https://www.facebook.com/mebinvarghese007" target="blank"><i class="fa fa-facebook-official"></i></a>
+                <a href="https://twitter.com/VargheseMebin" target="blank"><i class="fa fa-twitter"></i></a>
+                <!-- <a href="https://www.pinterest.com/webshorecompany/" target="blank"><i class="fa fa-pinterest-p" aria-hidden="true"></i></a>  -->
+                <a href="https://www.instagram.com/mebin_thannikkappilly/" target="blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                <a href="https://plus.google.com/u/0/+VazhikattyWayMaker" target="blank"><i class="fa fa-google-plus"></i></a>
+                <a href="https://www.linkedin.com/in/mebin-varghese-13654b94/" target="blank"><i class="fa fa-linkedin"></i></a>
+              </div>
+            </div>
+          </section>
+          <!-- Social Media -->
           <!-- Start Footer -->
           <footer id="footer" role="contentinfo">
             <!-- Start Footer Top -->
@@ -647,21 +738,25 @@
                         <div class="row">
                           <div class="col s12 m6 l6">
                             <div class="contact-form">
-                              <form>
+                              <form role="form" method="post" class="message-me">
                                 <div class="input-field">
-                                  <input type="text" class="input-box" name="contactName" id="contact-name">
+                                  <input type="text" class="input-box" name="contactName" id="contactName" required>
                                   <label class="input-label" for="contact-name">Name</label>
                                 </div>
                                 <div class="input-field">
-                                  <input type="email" class="input-box" name="contactEmail" id="email">
+                                  <input type="number" class="input-box" name="contactNumber" id="contactNumber" required>
+                                  <label class="input-label" for="number  ">Number</label>
+                                </div>
+                                <div class="input-field">
+                                  <input type="email" class="input-box" name="contactEmail" id="contactEmail" required>
                                   <label class="input-label" for="email">Email</label>
                                 </div>
                                 <div class="input-field">
-                                  <input type="text" class="input-box" name="contactSubject" id="subject">
+                                  <input type="text" class="input-box" name="contactSubject" id="contactSubject" required>
                                   <label class="input-label" for="subject">Subject</label>
                                 </div>
                                 <div class="input-field textarea-input">
-                                  <textarea class="materialize-textarea" name="contactMessage" id="textarea1"></textarea>
+                                  <textarea class="materialize-textarea" name="contactMessage" id="contactMessage" required></textarea>
                                   <label class="input-label" for="textarea1">Message</label>
                                 </div>
                                 <button class="left waves-effect btn-flat brand-text submit-btn" type="submit">send message</button>
@@ -698,22 +793,5 @@
           </footer>
         </main>
       </div>
-      <!-- jQuery Library -->
-      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-      <!-- Materialize js -->
-      <script type="text/javascript" src="js/materialize.min.js"></script>
-      <!-- Skill Progress Bar -->
-      <script src="js/appear.min.js" type="text/javascript"></script>
-      <script src="js/pro-bars.min.js" type="text/javascript"></script>
-      <!-- Owl slider -->      
-      <script src="js/owl.carousel.min.js"></script>    
-      <!-- Mixit slider  -->
-      <script src="http://cdn.jsdelivr.net/jquery.mixitup/latest/jquery.mixitup.min.js"></script>
-      <!-- counter -->
-      <script src="js/waypoints.min.js"></script>
-      <script src="js/jquery.counterup.min.js"></script>     
-
-      <!-- Custom Js -->
-      <script src="js/custom.js"></script>      
     </body>
   </html>
