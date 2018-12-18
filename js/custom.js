@@ -212,5 +212,15 @@ jQuery(function($){
         'slow');
 	});
 
+
+	$('a').click(function(e) {
+	});
+
+	function download1 () {
+		console.log('here');
+		e.preventDefault();  //stop the browser from following
+		window.location.href = 'docs/mebinvarghese.pdf';
+	}
+
 	
 });
